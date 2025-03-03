@@ -10,4 +10,180 @@ int main()
     return 0;
 }
 
+2.
+struct game
+{
+    int q[4];// = { 0,9,0,0 };
+    int a[4];
+    int num;
+ 
+    void init()
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            q[i] = rand() % 10;
+        }
+    }
+ 
+    void proceed(int n)
+    {
+        ++n;
+ 
+        std::cout << "\nInput num: ";
+        std::cin >> num;
+ 
+        if (check(num))
+        {
+            std::cout << "\n******\n\nOK, attempts = " << n;
+ 
+            char x;
+            do
+            {
+                std::cout << "\n\nAnother run? (y/n) ";
+                std::cin >> x;
+            } while (x != 'y' && x != 'n');
+ 
+            if (x == 'y') run();
+ 
+ 
+        }
+        else {
+            proceed(n);
+        }
+    }
+ 
+    bool check(int num)
+    {
+        int temp[4];
+        memcpy(temp, q, 4 * sizeof(int));
+ 
+        for (int i = 3; i >= 0; --i)
+        {
+            a[i] = num % 10;
+            num /= 10;
+        }
+ 
+        int b = 0;
+        int c = 0;
+ 
+        for (int i = 0; i < 4; ++i)
+        {
+            if (a[i] == temp[i]) ++c;
+        }
+ 
+        for (int i = 0; i < 4; ++i)
+        {
+            for (int j = 0; j < 4; ++j)
+            {
+                if (a[i] == temp[j])
+                {
+                    ++b;
+                    temp[j] = -1;
+                    break;
+                }
+            }
+        }
+      
+ 
+        std::cout << "\n Cows = " << c << " B = " << b << "\n------------------------";
+ 
+        if (b == 4) return true;
+ 
+        return false;
+    }
+ 
+    void run()
+    {
+        init();
+        proceed(0);
+    }
+};
+ 
+int main()
+{
+    srand(time(0));
+ 
+    game A;
+ 
+    A.run();
+ 
+    system("pause");
+    return 0;
+}
+
+
+3
+int main()
+{
+int i, j, x, y, a[i][j], h=1, loshad=1, p, k, n, m;
+for(i=1; i<9; i++) 
+{
+ for(j=1; j<9; j++) a[i][j]=0; 
+ }
+cout«"Введите x"«endl;
+cin » x;
+cout«"Введите y"«endl;
+cin » y;
+a[x][y]=1;
+do 
+{
+if(loshad=10000) h=65;
+else
+{
+p=rand(2);
+k=rand(4);
+r++;
+if(r>300)
+{
+for(i=1; i<9; i++) 
+{
+for(j=1; j<9; j++) 
+{
+if(a[i][j]=0) {h=1; loshad++;
+for(i=1; i<9; i++) 
+{
+for(j=1; j<9; j++) a[i][j]=0;
+}
+a[x][y]=1; 
+}
+}
+}
+r=0;
+}
+else
+{
+r++;
+if(p=1) 
+{
+n=i+(-1)^k;
+m=j+2*(-1)^(div(k;2));
+if (n<9 && m<9 && n>0 && m>0 && a[n][m]=0) { h++; i=n; j=m; a[n][m]=h; r=0;
+}
+}
+if(p=2)
+{
+n=i+2*(-1)^k;
+m=j+(-1)^(div(k;2));
+if (n<9 && m<9 && n>0 && m>0 && a[n][m]=0) { h++; i=n; j=m; a[n][m]=h; r=0; }}}}}
+while (h<64);
+a[n][m]=64;
+if(a[4][4]=0 || a[5][5]=0)
+cout«"Всё слошади не дойдут"«end;
+else 
+{
+cout«"Лошадь № "«loshad«" прошла всю доску в порядке:";
+for(i=1; i<9; i++) 
+{
+for(j=1; j<9; j++) cout«a[i][j]; 
+}
+}
+return(0);
+}
+
+4.int power(int base, int exponent) 
+{
+    if(exponent == 0) 
+        return 1;
+    else return base * power(base, exponent - 1); 
+}
    
