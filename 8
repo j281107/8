@@ -10,109 +10,10 @@ int main()
     return 0;
 }
 
-2.
-struct game
-{
-    int q[4];// = { 0,9,0,0 };
-    int a[4];
-    int num;
- 
-    void init()
-    {
-        for (int i = 0; i < 4; ++i)
-        {
-            q[i] = rand() % 10;
-        }
-    }
- 
-    void proceed(int n)
-    {
-        ++n;
- 
-        std::cout << "\nInput num: ";
-        std::cin >> num;
- 
-        if (check(num))
-        {
-            std::cout << "\n******\n\nOK, attempts = " << n;
- 
-            char x;
-            do
-            {
-                std::cout << "\n\nAnother run? (y/n) ";
-                std::cin >> x;
-            } while (x != 'y' && x != 'n');
- 
-            if (x == 'y') run();
- 
- 
-        }
-        else {
-            proceed(n);
-        }
-    }
- 
-    bool check(int num)
-    {
-        int temp[4];
-        memcpy(temp, q, 4 * sizeof(int));
- 
-        for (int i = 3; i >= 0; --i)
-        {
-            a[i] = num % 10;
-            num /= 10;
-        }
- 
-        int b = 0;
-        int c = 0;
- 
-        for (int i = 0; i < 4; ++i)
-        {
-            if (a[i] == temp[i]) ++c;
-        }
- 
-        for (int i = 0; i < 4; ++i)
-        {
-            for (int j = 0; j < 4; ++j)
-            {
-                if (a[i] == temp[j])
-                {
-                    ++b;
-                    temp[j] = -1;
-                    break;
-                }
-            }
-        }
-      
- 
-        std::cout << "\n Cows = " << c << " B = " << b << "\n------------------------";
- 
-        if (b == 4) return true;
- 
-        return false;
-    }
- 
-    void run()
-    {
-        init();
-        proceed(0);
-    }
-};
- 
-int main()
-{
-    srand(time(0));
- 
-    game A;
- 
-    A.run();
- 
-    system("pause");
-    return 0;
-}
 
 
-3
+
+2
 int main()
 {
 int i, j, x, y, a[i][j], h=1, loshad=1, p, k, n, m;
@@ -249,3 +150,134 @@ int main()
     }
 }
 
+
+2.
+#include <iostream>
+using namespace std;
+int main(const int& Argc, const char* Argv[]) 
+{
+
+	const int Nelem = 10;
+	int Arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+	int* begAr = &Arr[0];
+	int* endAr = &Arr[Nelem];
+	int* itrAr = begAr;
+	int* tmpValAr = new int(0);
+	cout << "Before\t1 2 3 4 5 6 7 8 9 10" << endl;
+	while (itrAr < endAr) 
+	{
+		*tmpValAr = *itrAr;
+		*itrAr = *(itrAr + 1);
+		*(itrAr + 1) = *tmpValAr;
+		itrAr += 2;
+	}
+	cout << "After\t";
+	for (int i = 0; i < Nelem; ++i)cout << Arr[i] << " ";
+	cout << endl;
+	system("pause");
+	return 0;
+}
+
+3/#include <iostream>
+using namespace std;
+int main() {
+    const int sizeArr = 10;
+    int arr[sizeArr] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int arr1[sizeArr];
+    int* beginArr = arr;
+    int* endArr = arr + sizeArr;
+    int* endArr1 = arr1 + sizeArr - 1;
+    while (beginArr != endArr) {
+        *endArr1-- = *beginArr++;
+    }
+    printArr(arr, arr + sizeArr);
+    printArr(arr1, arr1 + sizeArr);
+    cout << '\n';
+    return 0;
+}
+
+
+4.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int main();
+    {
+        float a = 0, b = 0;
+        cin >> a >> b;
+
+        switch (a > b)
+        {
+        case true:
+        cout << "A > b" << endl;
+        break;
+
+        default:
+        cout << "B > A" << endl;
+        break;
+        }
+
+        system("pause");
+    }
+    return 0;
+}
+
+7.
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    double a, b, d;
+    char c;
+    cin >> a >> c >> b;
+    double* p1 = &a;
+    double* p2 = &b;
+    char* p3 = &c;
+    double* p4 = &d;
+    switch (*p3) {
+    case '+':
+        *p4 = (*p1) + (*p2);
+        break;
+    case '-':
+        *p4 = (*p1) - (*p2);
+        break;
+    case '/':
+        *p4 = (*p1) / (*p2);
+        break;
+    case '*':
+        *p4 = (*p1) * (*p2);
+        break;
+    }
+    cout << *p4;
+    return 0;
+}
+
+8/
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+    srand((int)time(0));
+    int n, sum = 0;
+    cout << "n="; cin >> n;
+
+    int* a = new int[n];
+
+    for (int* pa = a; pa < a + n; pa++)
+    {
+        *pa = rand() % 10;
+        sum += *pa;
+        cout << *pa << " ";
+    }
+    cout << "\nsum=" << sum << "\n";
+    delete[]a;
+    system("pause");
+    return 0;
+}
+
+	
